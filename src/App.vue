@@ -1,5 +1,5 @@
 <template>
-  <MyComponent></MyComponent>
+  <MyComponent v-model:title="pageTitle" v-model:name="parentName"></MyComponent>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
@@ -13,6 +13,12 @@ export default {
   components: {
     // HelloWorld,
     MyComponent
+  },
+  data() {
+    return {
+      pageTitle: 'this is vue3.0',
+      parentName: 'this is parentName',
+    }
   }
 }
 </script>
