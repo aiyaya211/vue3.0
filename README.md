@@ -104,3 +104,29 @@ export deafault {
 ```
 
 
+**非vue3.0知识点**
+[非 Prop 的 Attribute](https://v3.cn.vuejs.org/guide/component-attrs.html#attribute-%E7%BB%A7%E6%89%BF)
+对于原本具有监听器的子组件来说，子组件原本的事件监听器（如：change）从父组件传递到子组件，它将在原生组件的监听 事件上触发。我们不需要显式地从 子组件 中发出事件，但是此子组件必须为单一的组件：
+```html
+<!--子组件 my-select-->
+    <select>
+      <option value="1">Yesterday</option>
+      <option value="2">Today</option>
+      <option value="3">Tomorrow</option>
+    </select>
+```
+```html
+<!--父组件-->
+  <my-select @change="changeOpt"></my-select>
+```
+```javascript
+// 父组件
+ methods: {
+    changeOpt(val) {
+      console.log(val.target.value); //yesterday || today ||. tomorrow
+    }
+  }
+```
+假如子组件中混入了别的内容，则无法把`change`事件具体绑定到某个dom上，会报错。
+
+

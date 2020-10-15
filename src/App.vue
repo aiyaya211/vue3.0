@@ -1,5 +1,6 @@
 <template>
   <MyComponent v-model:title="pageTitle" v-model:name="parentName"></MyComponent>
+  <p>非 Prop 的 Attribute</p>
   <my-select @change="changeOpt"></my-select>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
@@ -28,8 +29,7 @@ export default {
   },
   methods: {
     changeOpt(val) {
-      console.log(val);
-      console.log('changeOpt');
+      console.log(val.target.value);
     }
   }
 }
