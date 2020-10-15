@@ -6,11 +6,6 @@
     <div>
         <button @click="changeTitle">子组件向父组件传值</button>
     </div>
-    <select>
-      <option value="1">Yesterday</option>
-      <option value="2">Today</option>
-      <option value="3">Tomorrow</option>
-    </select>
 </template>
 <script>
 import { nextTick } from 'vue';

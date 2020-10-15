@@ -1,18 +1,24 @@
 <template>
-  <MyComponent v-model:title="pageTitle" v-model:name="parentName" @change="changeOpt"></MyComponent>
+  <MyComponent v-model:title="pageTitle" v-model:name="parentName"></MyComponent>
+  <my-select @change="changeOpt"></my-select>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
-import MyComponent from './components/myComponent.vue'
+import MyComponent from './components/myComponent.vue';
+import MySelect from './components/mySelect';
 
 export default {
   name: 'App',
   components: {
     // HelloWorld,
-    MyComponent
+    MyComponent,
+    MySelect
+  },
+  created() {
+    console.log(this.$attrs);
   },
   data() {
     return {
