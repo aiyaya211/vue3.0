@@ -1,5 +1,6 @@
 <template>
-  <MyComponent v-model:title="pageTitle" v-model:name="parentName"></MyComponent>
+  <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize="myText"></MyComponent>
+  <p>{{myText}}</p>
   <p>非 Prop 的 Attribute</p>
   <my-select @change="changeOpt"></my-select>
   <child-a name="aiyaya" sex="girl" age="20"></child-a>
@@ -31,6 +32,7 @@ export default {
     return {
       pageTitle: 'this is vue3.0',
       parentName: 'this is parentName',
+      myText: '',
     }
   },
   methods: {
@@ -41,7 +43,7 @@ export default {
       console.log(a);
       console.log(b);
       alert(a + b);
-    }
+    },
   }
 }
 </script>

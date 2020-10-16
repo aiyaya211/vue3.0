@@ -63,6 +63,7 @@ mounted() {
 若不做`import`引入，`vue3.0`中会报错  
 
 #### **`v-model`在自定义组件中的应用**
+默认情况下，组件上的`v-model`使用`modelValue`作为`prop`和 `update:modelValue`作为事件。我们可以通过向`v-model`传递参数来修改这些名称：
 ```html
 <!--子组件-->
     <button @click="changeTitle">子组件向父组件传值</button>
@@ -103,11 +104,13 @@ export deafault {
   }
 }
 ```
+`vue3.0`中自定义组件`v-model`支持自定义修饰符
+
 
 
 #### **非vue3.0知识点**
 [非 Prop 的 Attribute](https://v3.cn.vuejs.org/guide/component-attrs.html#attribute-%E7%BB%A7%E6%89%BF)
-`$attrs属性`指的是从上级组件传到下级组件，但是在子组件中但是该组件并没有相应 `props`或`emits`定义的`attribute`,非prop的attribute。  
+`$attrs属性`指的是从上级组件传到下级组件，但是在子组件中并没有相应 `props`或`emits`定义的`attribute`,非prop的attribute。  
 `$attrs`一般会直接挂载到根元素上。
 ```html
 <!--子组件 my-select-->

@@ -2,7 +2,7 @@
     <p>aiyaya page</p>
     <div>{{title}}</div>
     <div>{{name}}</div>
-    <input placeholder="标题"/>
+    <input placeholder="标题" :value="modelValue" @input='emitValue'/>
     <div>
         <button @click="changeTitle">子组件向父组件传值</button>
     </div>
@@ -14,6 +14,7 @@ export default {
         console.log(`beforeCreate + ${this.author}`); // undefined
     },
     created() {
+        console.log(this.modelModifiers);
         console.log(`created + ${this.author}`); // aiyaya
     },
     mounted() {
@@ -29,7 +30,9 @@ export default {
         name: {
             type: String,
             default: 'Default name'
-        }
+        },
+        modelValue: String,
+        modelModifiers: () => ({})
     },
     computed: {
         author() {
@@ -43,6 +46,13 @@ export default {
         changeTitle() {
             this.$emit('update:title', `aiyaya's title`);
             this.$emit('update:name', `aiyaya's name`);
+        },
+        emitValue(e) {
+            let value = e.target.value
+            if (this.modelModifiers.capitalize) {
+                value = value.charAt(0).toUpperCase() + value.slice(1)
+            }
+            this.$emit('update:modelValue', value)
         }
     }
 }
