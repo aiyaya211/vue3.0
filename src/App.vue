@@ -3,6 +3,7 @@
   <p>非 Prop 的 Attribute</p>
   <my-select @change="changeOpt"></my-select>
   <child-a name="aiyaya" sex="girl" age="20"></child-a>
+  <CustoForm @submit="submitContent"></CustoForm>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
@@ -12,6 +13,7 @@
 import MyComponent from './components/myComponent.vue';
 import MySelect from './components/mySelect';
 import ChildA from './components/childA';
+import CustoForm from './components/custoForm';
 
 export default {
   name: 'App',
@@ -19,7 +21,8 @@ export default {
     // HelloWorld,
     MyComponent,
     MySelect,
-    ChildA
+    ChildA,
+    CustoForm
   },
   created() {
     console.log(this.$attrs);
@@ -33,6 +36,11 @@ export default {
   methods: {
     changeOpt(val) {
       console.log(val.target.value);
+    },
+    submitContent(a, b) {
+      console.log(a);
+      console.log(b);
+      alert(a + b);
     }
   }
 }
