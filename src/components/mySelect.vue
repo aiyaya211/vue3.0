@@ -8,6 +8,10 @@
 <script>
 export default {
     name: 'my-select',
+    created() {
+        console.log('myselect');
+        console.log(this.$attrs.onChange);  //     changeOpt(val) {/*code*/}
+    },
     data() {
         return {
         }

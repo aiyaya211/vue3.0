@@ -2,6 +2,7 @@
   <MyComponent v-model:title="pageTitle" v-model:name="parentName"></MyComponent>
   <p>非 Prop 的 Attribute</p>
   <my-select @change="changeOpt"></my-select>
+  <child-a name="aiyaya" sex="girl" age="20"></child-a>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
@@ -10,13 +11,15 @@
 // import HelloWorld from './components/HelloWorld.vue';
 import MyComponent from './components/myComponent.vue';
 import MySelect from './components/mySelect';
+import ChildA from './components/childA';
 
 export default {
   name: 'App',
   components: {
     // HelloWorld,
     MyComponent,
-    MySelect
+    MySelect,
+    ChildA
   },
   created() {
     console.log(this.$attrs);

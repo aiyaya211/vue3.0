@@ -106,7 +106,8 @@ export deafault {
 
 **非vue3.0知识点**
 [非 Prop 的 Attribute](https://v3.cn.vuejs.org/guide/component-attrs.html#attribute-%E7%BB%A7%E6%89%BF)
-对于原本具有监听器的子组件来说，子组件原本的事件监听器（如：change）从父组件传递到子组件，它将在原生组件的监听 事件上触发。我们不需要显式地从 子组件 中发出事件，但是此子组件必须为单一的组件：
+`$attrs属性`指的是从上级组件传到下级组件，但是在子组件中但是该组件并没有相应 `props`或`emits`定义的`attribute`,非prop的attribute。  
+`$attrs`一般会直接挂载到根元素上。
 ```html
 <!--子组件 my-select-->
     <select>
@@ -114,6 +115,14 @@ export deafault {
       <option value="2">Today</option>
       <option value="3">Tomorrow</option>
     </select>
+```
+```javascript
+// 子组件 中能获取到 未定义的 attrs onchange事件
+// select 自带 change 的事件监听
+ created() {
+    console.log('myselect');
+    console.log(this.$attrs.onChange);  //     changeOpt(val) {/*code*/}
+ },
 ```
 ```html
 <!--父组件-->
@@ -127,6 +136,30 @@ export deafault {
     }
   }
 ```
-假如子组件中混入了别的内容，则无法把`change`事件具体绑定到某个dom上，会报错。
+需要注意的是，`$attrs`只能默认挂载在根节点上，举个例子： 
+```html
+<!--子组件-->
+<template>
+    <div>
+        <div>{{name}}</div>
+    </div>
+</template>
+```
+```javascript
+// 子组件props 不包含age
+ props: {
+        name: String,
+        sex: String,
+    },
+```
+```html
+<!--父组件-->
+    <child-a name="aiyaya" sex="girl" age="20"></child-a>
+
+<!--渲染结果 age属性在最外层的根元素上-->
+    <div age="20">
+        <div>aiyaya</div>
+    </div>
+```
 
 
