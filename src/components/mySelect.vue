@@ -9,7 +9,9 @@
 export default {
     name: 'my-select',
     data() {
-        return {}
+        return {
+            day: 'Yesterday'
+        }
     }
 }
 </script>
