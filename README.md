@@ -25,7 +25,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### vue3.0学习
 
-#### **生命周期在`beforeCreate`阶段获取不到计算属性（已声明未赋值，不会报错），能获取到`props`在`created`阶段能获取到计算属性**
+#### **生命周期在**
+`beforeCreate`阶段获取不到计算属性（已声明未赋值，不会报错），能获取到`props`在`created`阶段能获取到计算属性
 ```javascript
 beforeCreate() {
     console.log(`beforeCreate + ${this.author}`); // undefined
@@ -104,7 +105,7 @@ export deafault {
 ```
 
 
-**非vue3.0知识点**
+#### **非vue3.0知识点**
 [非 Prop 的 Attribute](https://v3.cn.vuejs.org/guide/component-attrs.html#attribute-%E7%BB%A7%E6%89%BF)
 `$attrs属性`指的是从上级组件传到下级组件，但是在子组件中但是该组件并没有相应 `props`或`emits`定义的`attribute`,非prop的attribute。  
 `$attrs`一般会直接挂载到根元素上。
