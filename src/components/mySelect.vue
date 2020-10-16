@@ -10,7 +10,6 @@ export default {
     name: 'my-select',
     data() {
         return {
-            day: 'Yesterday'
         }
     }
 }
