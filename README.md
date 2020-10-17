@@ -158,12 +158,20 @@ export deafault {
 ```
 ```html
 <!--父组件-->
-    <child-a name="aiyaya" sex="girl" age="20"></child-a>
+<child-a name="aiyaya" sex="girl" age="20"></child-a>
 
 <!--渲染结果 age属性在最外层的根元素上-->
-    <div age="20">
-        <div>aiyaya</div>
-    </div>
+<div age="20">
+    <div>aiyaya</div>
+</div>
 ```
+关于自定义组件`v-model`自定义修饰符，有个疑问：
+```html
+<!--父组件-->
+  <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize:modelValue="myText"></MyComponent>
+```
+这种写法，会不生效  
+
+
 
 

@@ -1,6 +1,10 @@
 <template>
     <div>
         <div>{{name}}</div>
+        <div>
+            slot插槽
+            <slot></slot>
+        </div>
     </div>
 </template>
 <script>
@@ -15,7 +19,7 @@ export default {
     },
     data() {
         return {
-
+            slotContent: '作用域插槽'
         }
     }
 }

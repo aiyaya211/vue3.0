@@ -3,7 +3,9 @@
   <p>{{myText}}</p>
   <p>非 Prop 的 Attribute</p>
   <my-select @change="changeOpt"></my-select>
-  <child-a name="aiyaya" sex="girl" age="20"></child-a>
+  <child-a name="aiyaya" sex="girl" age="20">
+    {{slotContent}}
+  </child-a>
   <CustoForm @submit="submitContent"></CustoForm>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
