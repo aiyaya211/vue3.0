@@ -4,11 +4,16 @@
   <p>非 Prop 的 Attribute</p>
   <my-select @change="changeOpt"></my-select>
   <child-a name="aiyaya" sex="girl" age="20">
-    {{slotContent}}
   </child-a>
   <CustoForm @submit="submitContent"></CustoForm>
-  <!-- <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <todoList>
+    <template v-slot:default="slotProps">
+      <span class="green">{{slotProps.item}}</span>
+    </template>
+    <template v-slot:content>
+      {{appContent}}
+    </template>
+  </todoList>
 </template>
 
 <script>
@@ -17,6 +22,7 @@ import MyComponent from './components/myComponent.vue';
 import MySelect from './components/mySelect';
 import ChildA from './components/childA';
 import CustoForm from './components/custoForm';
+import todoList from './components/todoList';
 
 export default {
   name: 'App',
@@ -25,7 +31,8 @@ export default {
     MyComponent,
     MySelect,
     ChildA,
-    CustoForm
+    CustoForm,
+    todoList
   },
   created() {
     console.log(this.$attrs);
@@ -35,6 +42,7 @@ export default {
       pageTitle: 'this is vue3.0',
       parentName: 'this is parentName',
       myText: '',
+      appContent: 'this is app'
     }
   },
   methods: {
@@ -58,5 +66,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.green {
+  color: aquamarine;
 }
 </style>
