@@ -24,8 +24,11 @@ export default {
             content: 'this is a todolist', 
         }
     },
-    provide: {
-        startComponent: 'todolist',
+    provide() {
+        return {
+            startComponent: 'todolist',
+            todoLength: this.items.length
+        }
     },
 }
 </script>

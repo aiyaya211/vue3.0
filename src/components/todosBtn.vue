@@ -6,9 +6,10 @@
 export default {
     name: 'todo-btn',
     created() {
-        console.log(`created startComponent: ${this.startComponent}`) // created startComponent: todolist
+        console.log(`created startComponent: ${this.startComponent} todolistlength: ${this.todoLength}`) 
+        // created startComponent: todolist todolistlength: 4
     },
-    inject: ['startComponent'],
+    inject: ['startComponent', 'todoLength'],
     data() {
         return {}
     }

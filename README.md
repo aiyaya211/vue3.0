@@ -188,17 +188,15 @@ todoList.vue
 ```
 ```javascript
 export default {
-    provide: {
-        startComponent: 'todolist', // 提供
+    provide() {
+        return {
+            startComponent: 'todolist',
+            todoLength: this.items.length
+        }
     },
 }
 ```
-```html
-<!--todoItem.vue-->
-<template>
-    <todo-btn></todo-btn>
-</template>
-```
+
 ```html
 <!--todoItem.vue-->
 <template>
@@ -215,7 +213,7 @@ export default {
 // todoBtn.vue
 export default {
     name: 'todo-btn',
-    inject: ['startComponent'], // 注入
+    inject: ['startComponent', 'todoLength'], // 注入
     data() {
         return {}
     }
@@ -229,7 +227,8 @@ export default {
 ```javascript
 // todoBtn.vue
 created() {
-    console.log(`created startComponent: ${this.startComponent}`) // created startComponent: todolist
+    console.log(`created startComponent: ${this.startComponent} todolistlength: ${this.todoLength}`) 
+    // created startComponent: todolist todolistlength: 4
 },
 ```
 
