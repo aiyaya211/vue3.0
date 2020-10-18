@@ -6,18 +6,26 @@
       </li>
     </ul> 
     <div>
-        123456
         <slot name="content"></slot>
     </div>
+    <todo-item></todo-item>
 </template>
 <script>
+import TodoItem from './todoItem';
+
 export default {
     name:'todo-list',
+    components: {
+        TodoItem
+    },
     data() {
         return {
             items: ['Feed a cat', 'Buy milk', 'sleep', 'study vue3.0'],
-            content: 'this is a todolist'
+            content: 'this is a todolist', 
         }
-    }
+    },
+    provide: {
+        startComponent: 'todolist',
+    },
 }
 </script>

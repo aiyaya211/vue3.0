@@ -171,6 +171,69 @@ export deafault {
   <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize:modelValue="myText"></MyComponent>
 ```
 这种写法，会不生效  
+  
+[provide/inject](https://v3.cn.vuejs.org/guide/component-provide-inject.html#)  
+`provide/inject`主要用于深嵌套的父组件给子组件传值  
+对于如下的组件结构：  
+```
+todoList.vue  
+│
+└───todoItem.vue
+  │
+  └───todoBtn.vue
+```
+```html
+<!--todoList.vue-->
+<todo-item></todo-item>
+```
+```javascript
+export default {
+    provide: {
+        startComponent: 'todolist', // 提供
+    },
+}
+```
+```html
+<!--todoItem.vue-->
+<template>
+    <todo-btn></todo-btn>
+</template>
+```
+```html
+<!--todoItem.vue-->
+<template>
+    <todo-btn></todo-btn>
+</template>
+```
+```html
+<!--todoBtn.vue-->
+<template>
+    <button type="text">{{startComponent}}</button>
+</template>
+```
+```javascript
+// todoBtn.vue
+export default {
+    name: 'todo-btn',
+    inject: ['startComponent'], // 注入
+    data() {
+        return {}
+    }
+}
+```
+`todoBtn.vue`渲染效果：
+```html
+<button type="text">todolist</button>
+```
+并且能在`created()`生命周期中访问到被注入的属性
+```javascript
+// todoBtn.vue
+created() {
+    console.log(`created startComponent: ${this.startComponent}`) // created startComponent: todolist
+},
+```
+
+
 
 
 
