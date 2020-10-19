@@ -1,6 +1,6 @@
 <template>
     <p>提供和注入</p>
-    <button type="text">{{startComponent}}</button>
+    <a-button type="primary">{{startComponent}}</a-button>
 </template>
 <script>
 export default {

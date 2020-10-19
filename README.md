@@ -25,8 +25,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### vue3.0学习
 
-#### **生命周期在**
-`beforeCreate`阶段获取不到计算属性（已声明未赋值，不会报错），能获取到`props`在`created`阶段能获取到计算属性
+#### **生命周期**
+在`beforeCreate`阶段获取不到计算属性（已声明未赋值，不会报错），能获取到`props`在`created`阶段能获取到计算属性
 ```javascript
 beforeCreate() {
     console.log(`beforeCreate + ${this.author}`); // undefined
@@ -104,7 +104,14 @@ export deafault {
   }
 }
 ```
-`vue3.0`中自定义组件`v-model`支持自定义修饰符
+`vue3.0`中自定义组件`v-model`支持自定义修饰符  
+
+关于自定义组件`v-model`自定义修饰符，有个疑问：
+```html
+<!--父组件-->
+  <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize:modelValue="myText"></MyComponent>
+```
+这种写法，会不生效 
 
 
 
@@ -164,13 +171,7 @@ export deafault {
 <div age="20">
     <div>aiyaya</div>
 </div>
-```
-关于自定义组件`v-model`自定义修饰符，有个疑问：
-```html
-<!--父组件-->
-  <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize:modelValue="myText"></MyComponent>
-```
-这种写法，会不生效  
+``` 
   
 [provide/inject](https://v3.cn.vuejs.org/guide/component-provide-inject.html#)  
 `provide/inject`主要用于深嵌套的父组件给子组件传值  
