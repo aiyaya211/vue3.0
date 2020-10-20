@@ -36,6 +36,8 @@ export default {
   },
   created() {
     console.log(this.$attrs);
+    // 一个vue实例中的所有选项属性 像name components 等等
+    console.log(`options: ${JSON.stringify(this.$options)}`);
   },
   data() {
     return {
