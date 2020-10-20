@@ -9,7 +9,10 @@
 </template>
 <script>
 import { nextTick } from 'vue';
+import componentMixin from '../mixin/component.mixin';
+
 export default {
+    mixins: [componentMixin],
     beforeCreate() {
         console.log(`beforeCreate + ${this.author}`); // undefined
     },
@@ -19,7 +22,8 @@ export default {
     },
     mounted() {
         nextTick(() => {
-            console.log('nextTick')
+            console.log('nextTick');
+            console.log(`data: ${JSON.stringify(this.$data)}`); //data: {"user":{"id":2}}
         })
     },
     props: {
@@ -40,7 +44,11 @@ export default {
         }
     },
     data() {
-        return {}
+        return {
+            user: {
+                id: 2
+            }
+        }
     },
     methods: {
         changeTitle() {

@@ -111,7 +111,45 @@ export deafault {
 <!--父组件-->
   <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize:modelValue="myText"></MyComponent>
 ```
-这种写法，会不生效 
+这种写法，会不生效  
+
+#### **`mixin`合并行为变更**
+```javascript
+// mixin.js
+export default {
+    data() {
+        return {
+            user: {
+                name: 'aiyaya',
+                id: 1
+              }
+        }
+    }
+}
+```
+```javascript
+// 组件 vue3.0
+mixins: [componentMixin],
+ data() {
+    return {
+        user: {
+            id: 2
+        }
+    }
+},
+ mounted() {
+    nextTick(() => {
+        console.log('nextTick');
+        console.log(`data: ${JSON.stringify(this.$data)}`); //data: {"user":{"id":2}}
+    })
+},
+// 组件 vue2.*
+ nextTick(() => {
+        console.log('nextTick');
+        console.log(`data: ${JSON.stringify(this.$data)}`); //data: {"user":{name: 'aiyaya',"id":2}}
+ })
+```
+
 
 
 
