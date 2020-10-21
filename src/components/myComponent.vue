@@ -3,6 +3,12 @@
     <div>{{title}}</div>
     <div>{{name}}</div>
     <input placeholder="标题" :value="modelValue" @input='emitValue'/>
+    <!-- 自定义指令 -->
+    <input placeholder="自定义指令" v-focus />
+    <div>
+        <input type="range" v-model="pinPadding" min="0" max="500"/>
+        <p v-pin:[direction]="pinPadding">这段话距离{{direction}}位置有{{pinPadding}}px的距离</p>
+    </div>
     <div>
         <button @click="changeTitle">子组件向父组件传值</button>
     </div>
@@ -13,6 +19,30 @@ import componentMixin from '../mixin/component.mixin';
 
 export default {
     mixins: [componentMixin],
+    directives: {
+        focus: {
+            // 第一次挂载指令
+            mounted(el) {
+                el.focus()
+            }
+        },
+        pin: {
+            // 挂载指令
+            mounted(el, binding) {
+                console.log(el);
+                console.log('el');
+                console.log(binding);
+                el.style.position = 'fixed';
+                const s = binding.arg || 'top';
+                el.style[s] = binding.value + 'px';
+            },
+            // 更新
+            updated(el, binding) {
+                const s = binding.arg || 'top';
+                el.style[s] = binding.value + 'px';
+            }
+        }
+    },
     beforeCreate() {
         console.log(`beforeCreate + ${this.author}`); // undefined
     },
@@ -47,7 +77,9 @@ export default {
         return {
             user: {
                 id: 2
-            }
+            },
+            direction: 'right',
+            pinPadding: 200
         }
     },
     methods: {
