@@ -158,7 +158,7 @@ mixins: [componentMixin],
 + update - 当元素更新，但子元素尚未更新时，将调用此钩子。
 + componentUpdated - 一旦组件和子级被更新，就会调用这个钩子。
 + unbind - 一旦指令被移除，就会调用这个钩子。也只调用一次。 
- 
+
 `vue3.0`
 + bind → beforeMount
 + inserted → mounted
@@ -288,8 +288,76 @@ created() {
     console.log(`created startComponent: ${this.startComponent} todolistlength: ${this.todoLength}`) 
     // created startComponent: todolist todolistlength: 4
 },
-```
+```  
 
+[传入teleport](https://v3.cn.vuejs.org/guide/teleport.html)  
+当不使用`teleport` 实现一个全屏的弹窗
+```html
+<!--子组件 弹窗 modal-button-->
+<template>
+    <button @click="modalOpen = true">
+        展开全屏模式
+    </button>
+    <div v-if="modalOpen" class="modal">
+      <div>
+        I'm a modal! 
+        <button @click="modalOpen = false">
+          关闭全屏模式
+        </button>
+      </div>
+    </div>
+</template>
+<script>
+export default {
+    name: "model-button",
+    data() {
+        return {
+            modalOpen: false,
+        }
+    }
+}
+</script>
+<style>
+.modal {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background: azure;
+}
+</style>
+```
+挂载到父组件中
+```html
+<!--父组件 因为是全屏 根据css定位需要将父组件根节点设置为position:  relative-->
+<template>
+ <div style="position: relative;">
+   <modal-button></modal-button>
+ </div>
+ </template>
+```  
+传入 `teleport`的作用就是给子组件一个相对定位的点，修改子组件如下：
+```html
+<template>
+    <button @click="modalOpen = true">
+        展开全屏模式
+    </button>
+    <teleport to="body">
+    <div v-if="modalOpen" class="modal">
+      <div>
+        I'm a modal! 
+        <button @click="modalOpen = false">
+          关闭全屏模式
+        </button>
+      </div>
+    </div>
+    </teleport>
+</template>
+```
+去掉父组件的相对定位 ，全屏弹窗依旧可以实现，可以看下渲染得到的页面代码：
+```html
+```
 
 
 

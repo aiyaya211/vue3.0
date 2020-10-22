@@ -1,4 +1,5 @@
 <template>
+ <div>
   <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize="myText"></MyComponent>
   <p>{{myText}}</p>
   <p>非 Prop 的 Attribute</p>
@@ -14,6 +15,8 @@
       {{appContent}}
     </template>
   </todoList>
+  <modal-button></modal-button>
+  </div>
 </template>
 
 <script>
@@ -23,6 +26,7 @@ import MySelect from './components/mySelect';
 import ChildA from './components/childA';
 import CustoForm from './components/custoForm';
 import todoList from './components/todoList';
+import modalButton from './components/modelButton';
 
 export default {
   name: 'App',
@@ -32,7 +36,8 @@ export default {
     MySelect,
     ChildA,
     CustoForm,
-    todoList
+    todoList,
+    modalButton
   },
   created() {
     console.log(this.$attrs);
