@@ -148,7 +148,26 @@ mixins: [componentMixin],
         console.log('nextTick');
         console.log(`data: ${JSON.stringify(this.$data)}`); //data: {"user":{name: 'aiyaya',"id":2}}
  })
-```
+```  
+
+#### **自定义指令生命周期调整**
+自定义指令的生命周期与组件的生命周期一致  
+`vue2.*`
++ bind - 指令绑定到元素后发生。只发生一次。
++ inserted - 元素插入父 DOM 后发生。
++ update - 当元素更新，但子元素尚未更新时，将调用此钩子。
++ componentUpdated - 一旦组件和子级被更新，就会调用这个钩子。
++ unbind - 一旦指令被移除，就会调用这个钩子。也只调用一次。 
+ 
+`vue3.0`
++ bind → beforeMount
++ inserted → mounted
++ beforeUpdate：新的！这是在元素本身更新之前调用的，很像组件生命周期钩子。
++ update → 移除！有太多的相似之处要更新，所以这是多余的，请改用 updated。
++ componentUpdated → updated
++ beforeUnmount：新的！与组件生命周期钩子类似，它将在卸载元素之前调用。
++ unbind -> unmounted
+
 
 
 
