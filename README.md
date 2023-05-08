@@ -348,7 +348,7 @@ export default {
       <div>
         I'm a modal! 
         <button @click="modalOpen = false">
-          关闭全屏模式
+          关闭全屏模式1
         </button>
       </div>
     </div>
