@@ -49,7 +49,14 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 createApp(App).mount('#app')
-```
+```  
+#### **可以多个挂载点挂载**  
+```html
+<!-- 有app和app1两个挂载点 -->
+<div id="app"></div>
+<div id="app1"></div>
+```  
+类似一个挂载一个的方式进行多个组件的挂载
   
 #### **`nextTick`需要引入`api`之后方可使用**.  
 ```javascript
@@ -358,6 +365,8 @@ export default {
 去掉父组件的相对定位 ，全屏弹窗依旧可以实现，可以看下渲染得到的页面代码：
 ```html
 ```
+
+
 
 
 
