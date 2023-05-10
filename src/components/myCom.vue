@@ -13,7 +13,7 @@
 </template>
 <script>
 // reactive() 函数创建一个响应式对象或数组
-import { reactive, ref, computed } from 'vue'
+import { reactive, ref, computed, watch } from 'vue'
 
 export default {
     // `setup` 是一个专门用于组合式 API 的特殊钩子函数
@@ -60,6 +60,16 @@ export default {
     const isActive = ref(true);
     const hasError = ref(false);
 
+    // const obj = reactive({count: 0});
+    watch(state, (newValue, oldValue) => {
+        console.log(newValue)
+        console.log(oldValue)
+        // 在嵌套的属性变更时触发
+        // 注意：`newValue` 此处和 `oldValue` 是相等的
+        // 因为它们是同一个对象！
+        // 那我怎么拿到前后的数据啊 不好用了不是？
+        console.log('数据变化了')
+    })
 
     // 添加一个方法
     function increment() {
