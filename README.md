@@ -24,6 +24,37 @@ yarn lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### vue3.0学习
+#### 组合式API和选项式API  
+学习`vue2.x`的时候没有这个区分的概念，当时使用的其实就是选项式API  
+`vue3`其实是对`vue2.x`中的选项式API的兼容，在学习`vue3`的过程中，更提倡使用选项式API,文档中提到的很多的知识点，也是基于选项式API
+
+#### setup生命周期
+reactive() 返回的是一个原始对象的 Proxy，适用于引用数据类型  
+ref() 适用于基本数据类型  
+
+#### 计算属性  
+计算属性是响应式的，通过`computed()`函数接收一个`getter`函数实现，返回一个计算属性`ref`
+```javascript
+const author = reactive({
+    name: 'aiyaya',
+    weather: 'sunny',
+    address: '杭州',
+    mood: 'lose job'
+})
+// 一个计算属性 ref
+const publishedBooksMessage = computed(() => {
+    return author.weather === 'sunny' ? 'Yes' : 'No'
+})
+```
+```html
+<div>计算属性</div>
+<!-- 计算属性 ref 也会在模板中自动解包 -->
+<div>{{ publishedBooksMessage }}</div>  
+```
+
+#### v-if和v-show的优先级关系  
+`vue3`和`vue2`的一个不同点，`v-if`和`v-for`同时使用的优先级是不一样的，`vue3`中，当 `v-if` 和 `v-for` 同时存在于一个元素上的时候，`v-if` 会首先被执行，但是我们在实际开发过程中不要把这两个放在同一个元素上，通过外层添加`template`或者使用计算属性来实现我们的需求
+
 
 #### **生命周期**
 在`beforeCreate`阶段获取不到计算属性（已声明未赋值，不会报错），能获取到`props`在`created`阶段能获取到计算属性
@@ -56,7 +87,27 @@ createApp(App).mount('#app')
 <div id="app"></div>
 <div id="app1"></div>
 ```  
-类似一个挂载一个的方式进行多个组件的挂载
+类似一个挂载一个的方式进行多个组件的挂载  
+
+#### **响应式**  
+因为`vue3`中的响应式是基于`proxy`实现的
+```javascript
+export default {
+  data() {
+    return {
+      someObject: {}
+    }
+  },
+  mounted() {
+    const newObject = {}
+    this.someObject = newObject
+
+    console.log(newObject === this.someObject) // false
+  }
+}
+```
+当你在赋值后再访问 this.someObject，此值已经是原来的 newObject 的一个响应式代理。与 Vue 2 不同的是，这里原始的 newObject 不会变为响应式：请确保始终通过 this 来访问响应式状态。（官方原话）  
+意思就是data中的响应式数据，在赋值操作后，赋值生成的拷贝对象和原本的对象不是同一个，也无法像data中的数据一样可以响应式。
   
 #### **`nextTick`需要引入`api`之后方可使用**.  
 ```javascript
