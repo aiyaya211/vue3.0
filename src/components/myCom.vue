@@ -1,4 +1,5 @@
 <template>
+    <h4>{{ title }}</h4>
     <div>mycom</div>
     <div>可以有多个子节点</div>
     <div>当前count:{{state.count}}</div>
@@ -16,6 +17,7 @@
 import { reactive, ref, computed, watch } from 'vue'
 
 export default {
+    props: ['title'],
     // `setup` 是一个专门用于组合式 API 的特殊钩子函数
    setup() {
     const state = reactive({count: 0}); // 引用数据类型

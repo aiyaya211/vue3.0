@@ -1,7 +1,7 @@
 <template>
  <div>
   <div>组合式API</div>
-  <my-com></my-com>
+  <my-com title="这是一个mycom子组件"></my-com>
   <MyComponent v-model:title="pageTitle" v-model:name="parentName" v-model.capitalize="myText"></MyComponent>
   <p>{{myText}}</p>
   <p>非 Prop 的 Attribute</p>
